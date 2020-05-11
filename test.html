@@ -1,0 +1,32 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<div id="app">
+  <div
+    class="diff-container"
+    v-html="dynamicHtmlContent.outerHTML"
+    ref="auditContainer"
+  ></div>
+</div>
+<script>
+  var table = document.createElement("table");
+  var body = table.createTBody();
+  var row = body.insertRow();
+  var cell = row.insertCell();
+  cell.innerHTML = "A test table";
+
+  var vm = new Vue({
+    el: "#app",
+    data() {
+      return {
+        dynamicHtmlContent: null,
+      };
+    },
+    created() {
+      this.displayDiff();
+    },
+    methods: {
+      displayDiff: function () {
+        this.dynamicHtmlContent = table;
+      },
+    },
+  });
+</script>
